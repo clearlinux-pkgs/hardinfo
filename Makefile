@@ -1,5 +1,5 @@
 PKG_NAME := hardinfo
-URL = https://github.com/lpereira/hardinfo/archive/098e0c0955305ae60cf8b8892bcf34a957f5286c.tar.gz
+URL = https://github.com/lpereira/hardinfo/archive/83de522ed44c719ba887935893b8c97b005d47fd.tar.gz
 ARCHIVES = 
 
 include ../common/Makefile.common
