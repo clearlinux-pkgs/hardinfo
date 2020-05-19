@@ -1,0 +1,32 @@
+From d359e13826d79dbc8896a8b12ba18fdc7f1d108f Mon Sep 17 00:00:00 2001
+From: Trung Le <trung.le@ruby-journal.com>
+Date: Thu, 7 May 2020 11:27:57 +1000
+Subject: [PATCH] Fix enum declaration
+
+---
+ includes/benchmark.h | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+
+diff --git a/includes/benchmark.h b/includes/benchmark.h
+index ab77efa4..77e6bbbf 100644
+--- a/includes/benchmark.h
++++ b/includes/benchmark.h
+@@ -8,7 +8,7 @@
+ 
+ extern ProgramParameters params;
+ 
+-enum {
++enum BenchmarkEntries {
+     BENCHMARK_BLOWFISH_SINGLE,
+     BENCHMARK_BLOWFISH_THREADS,
+     BENCHMARK_BLOWFISH_CORES,
+@@ -26,7 +26,7 @@ enum {
+     BENCHMARK_MEMORY_QUAD,
+     BENCHMARK_GUI,
+     BENCHMARK_N_ENTRIES
+-} BenchmarkEntries;
++};
+ 
+ void benchmark_bfish_single(void);
+ void benchmark_bfish_threads(void);
+

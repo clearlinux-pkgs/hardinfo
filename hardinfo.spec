@@ -4,7 +4,7 @@
 #
 Name     : hardinfo
 Version  : 83de522ed44c719ba887935893b8c97b005d47fd
-Release  : 3
+Release  : 4
 URL      : https://github.com/lpereira/hardinfo/archive/83de522ed44c719ba887935893b8c97b005d47fd.tar.gz
 Source0  : https://github.com/lpereira/hardinfo/archive/83de522ed44c719ba887935893b8c97b005d47fd.tar.gz
 Summary  : No detailed summary available
@@ -25,6 +25,7 @@ BuildRequires : pkgconfig(gthread-2.0)
 BuildRequires : pkgconfig(gtk+-3.0)
 BuildRequires : pkgconfig(libsoup-2.4)
 BuildRequires : pkgconfig(x11)
+Patch1: fix-enum-declaration.patch
 
 %description
 This is Christian Hergert's "Uber-Graph"
@@ -86,13 +87,15 @@ man components for the hardinfo package.
 
 %prep
 %setup -q -n hardinfo-83de522ed44c719ba887935893b8c97b005d47fd
+cd %{_builddir}/hardinfo-83de522ed44c719ba887935893b8c97b005d47fd
+%patch1 -p1
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
-export LANG=C
-export SOURCE_DATE_EPOCH=1561732736
+export LANG=C.UTF-8
+export SOURCE_DATE_EPOCH=1589904846
 mkdir -p clr-build
 pushd clr-build
 export GCC_IGNORE_WERROR=1
@@ -100,18 +103,18 @@ export AR=gcc-ar
 export RANLIB=gcc-ranlib
 export NM=gcc-nm
 export CFLAGS="$CFLAGS -O3 -ffat-lto-objects -flto=4 "
-export FCFLAGS="$CFLAGS -O3 -ffat-lto-objects -flto=4 "
-export FFLAGS="$CFLAGS -O3 -ffat-lto-objects -flto=4 "
+export FCFLAGS="$FFLAGS -O3 -ffat-lto-objects -flto=4 "
+export FFLAGS="$FFLAGS -O3 -ffat-lto-objects -flto=4 "
 export CXXFLAGS="$CXXFLAGS -O3 -ffat-lto-objects -flto=4 "
 %cmake .. -DHARDINFO_GTK3=1 -DCMAKE_INSTALL_LIBDIR=lib64
-make  %{?_smp_mflags} VERBOSE=1
+make  %{?_smp_mflags}  VERBOSE=1
 popd
 
 %install
-export SOURCE_DATE_EPOCH=1561732736
+export SOURCE_DATE_EPOCH=1589904846
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/hardinfo
-cp LICENSE %{buildroot}/usr/share/package-licenses/hardinfo/LICENSE
+cp %{_builddir}/hardinfo-83de522ed44c719ba887935893b8c97b005d47fd/LICENSE %{buildroot}/usr/share/package-licenses/hardinfo/d6458d52bfead6f1399b865f1aeea0caa639ef6c
 pushd clr-build
 %make_install
 popd
@@ -209,7 +212,7 @@ popd
 
 %files license
 %defattr(0644,root,root,0755)
-/usr/share/package-licenses/hardinfo/LICENSE
+/usr/share/package-licenses/hardinfo/d6458d52bfead6f1399b865f1aeea0caa639ef6c
 
 %files man
 %defattr(0644,root,root,0755)
