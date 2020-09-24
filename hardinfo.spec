@@ -4,7 +4,7 @@
 #
 Name     : hardinfo
 Version  : 83de522ed44c719ba887935893b8c97b005d47fd
-Release  : 4
+Release  : 5
 URL      : https://github.com/lpereira/hardinfo/archive/83de522ed44c719ba887935893b8c97b005d47fd.tar.gz
 Source0  : https://github.com/lpereira/hardinfo/archive/83de522ed44c719ba887935893b8c97b005d47fd.tar.gz
 Summary  : No detailed summary available
